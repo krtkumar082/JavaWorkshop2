@@ -17,9 +17,9 @@ public class HotelReservationTest {
 	@Test
 	public void addedHotelCheck_ReturnTrue() {
 		HotelFuncs hotels=new HotelFuncs();
-		hotels.addHotel("Lakewood",110,90);
-		hotels.addHotel("Bridgewood",150,50);
-		hotels.addHotel("Rridgewood",200,150);
+		hotels.addHotel("Lakewood",110,90,3);
+		hotels.addHotel("Bridgewood",150,50,4);
+		hotels.addHotel("Rridgewood",200,150,5);
 		boolean hotelInList = false;
 		for (Hotel hotel : hotels.getHotelList()) {
 			if(hotel.getHotelName().equalsIgnoreCase("Lakewood"))
@@ -33,9 +33,9 @@ public class HotelReservationTest {
 	@Test
 	public void addedHotelCheck_ReturnFalse() {
 		HotelFuncs hotels=new HotelFuncs();
-		hotels.addHotel("Lakewood",110,90);
-		hotels.addHotel("Bridgewood",150,50);
-		hotels.addHotel("Rridgewood",200,150);
+		hotels.addHotel("Lakewood",110,90,3);
+		hotels.addHotel("Bridgewood",150,50,4);
+		hotels.addHotel("Rridgewood",200,150,5);
 		boolean hotelInList = false;
 		for (Hotel hotel : hotels.getHotelList()) {
 			if(hotel.getHotelName().equalsIgnoreCase("Bakewood"))
@@ -49,9 +49,9 @@ public class HotelReservationTest {
 	@Test
 	public void addedHotelCheckCheapest_ReturnTrue() {
 		HotelFuncs hotels=new HotelFuncs();
-		hotels.addHotel("Lakewood",110,90);
-		hotels.addHotel("Bridgewood",150,50);
-		hotels.addHotel("Rridgewood",200,150);
+		hotels.addHotel("Lakewood",110,90,3);
+		hotels.addHotel("Bridgewood",150,50,4);
+		hotels.addHotel("Rridgewood",200,150,5);
 		try {
 			LocalDate startDate=LocalDate.of(2020, 9, 11);
 			LocalDate endDate=LocalDate.of(2020, 9, 12);
@@ -65,5 +65,34 @@ public class HotelReservationTest {
 		}
 	}
 	
+	@Test
+	public void addedHotelRatings_ReturnTrue() {
+		HotelFuncs hotels=new HotelFuncs();
+		hotels.addHotel("Lakewood",110,90,3);
+		hotels.addHotel("Bridgewood",150,50,4);
+		hotels.addHotel("Ridgewood",200,150,5);
+		
+		boolean hotelRatingCheck1 = false;
+		for (Hotel hotel : hotels.getHotelList()) {
+			if(hotel.getHotelName().equalsIgnoreCase("Lakewood"))
+			{ if(hotel.getRating()==3)
+				{ hotelRatingCheck1=true;
+			      break;
+				}
+			}
+		}
+		
+		boolean hotelRatingCheck2 = false;
+		for (Hotel hotel : hotels.getHotelList()) {
+			if(hotel.getHotelName().equalsIgnoreCase("Ridgewood"))
+			{ if(hotel.getRating()==5)
+				{ hotelRatingCheck2=true;
+			      break;
+				}
+			}
+		}
+		boolean result=hotelRatingCheck1 && hotelRatingCheck2;
+		assertTrue(result);
+	}
 	
 }
