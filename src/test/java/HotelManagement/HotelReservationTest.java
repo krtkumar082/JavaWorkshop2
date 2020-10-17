@@ -17,13 +17,15 @@ public class HotelReservationTest {
 	@Test
 	public void addedHotelCheck_ReturnTrue() {
 		HotelFuncs hotels=new HotelFuncs();
-		hotels.addHotel("Lakewood",110);
-		hotels.addHotel("Bridgewood",150);
-		hotels.addHotel("Rridgewood",200);
+		hotels.addHotel("Lakewood",110,90);
+		hotels.addHotel("Bridgewood",150,50);
+		hotels.addHotel("Rridgewood",200,150);
 		boolean hotelInList = false;
 		for (Hotel hotel : hotels.getHotelList()) {
 			if(hotel.getHotelName().equalsIgnoreCase("Lakewood"))
-				hotelInList= true;
+			{ if(hotel.getRateOfHotelRegularCustWeekNday()==90)
+				hotelInList=true;
+			}
 		}
 		assertTrue(hotelInList);
 	}
@@ -31,35 +33,18 @@ public class HotelReservationTest {
 	@Test
 	public void addedHotelCheck_ReturnFalse() {
 		HotelFuncs hotels=new HotelFuncs();
-		hotels.addHotel("Lakewood",110);
-		hotels.addHotel("Bridgewood",150);
-		hotels.addHotel("Rridgewood",200);
+		hotels.addHotel("Lakewood",110,90);
+		hotels.addHotel("Bridgewood",150,50);
+		hotels.addHotel("Rridgewood",200,150);
 		boolean hotelInList = false;
 		for (Hotel hotel : hotels.getHotelList()) {
-			if(hotel.getHotelName().equalsIgnoreCase("KkHotels"))
-				hotelInList= true;
+			if(hotel.getHotelName().equalsIgnoreCase("Bakewood"))
+			{ if(hotel.getRateOfHotelRegularCustWeekNday()==100)
+				hotelInList=true;
+			}
 		}
 		assertFalse(hotelInList);
 	}
 	
-	@Test
-	public void addedHotelCheckCheapest_ReturnTrue() {
-		
-		HotelFuncs hotels=new HotelFuncs();
-		hotels.addHotel("Lakewood",110);
-		hotels.addHotel("Bridgewood",150);
-		hotels.addHotel("Rridgewood",200);
-		try {
-			LocalDate startDate=LocalDate.of(2020,9,10);
-			LocalDate endDate=LocalDate.of(2020,9,11);
-			Hotel cheapest=hotels.cheapestHotel(startDate,endDate);
-			boolean result=false;
-			if(cheapest.getHotelName().equalsIgnoreCase("lakewood"))
-				result=true;
-			assertTrue(result);
-		}catch(DateTimeException e) {
-			System.out.println("Invalid Date format");
-		}
-	}
 	
 }
