@@ -19,7 +19,7 @@ public class HotelReservationTest {
 		HotelFuncs hotels=new HotelFuncs();
 		hotels.addHotel("Lakewood",110,90,3);
 		hotels.addHotel("Bridgewood",150,50,4);
-		hotels.addHotel("Rridgewood",200,150,5);
+		hotels.addHotel("Ridgewood",200,150,5);
 		boolean hotelInList = false;
 		for (Hotel hotel : hotels.getHotelList()) {
 			if(hotel.getHotelName().equalsIgnoreCase("Lakewood"))
@@ -35,7 +35,7 @@ public class HotelReservationTest {
 		HotelFuncs hotels=new HotelFuncs();
 		hotels.addHotel("Lakewood",110,90,3);
 		hotels.addHotel("Bridgewood",150,50,4);
-		hotels.addHotel("Rridgewood",200,150,5);
+		hotels.addHotel("Ridgewood",200,150,5);
 		boolean hotelInList = false;
 		for (Hotel hotel : hotels.getHotelList()) {
 			if(hotel.getHotelName().equalsIgnoreCase("Bakewood"))
@@ -51,7 +51,7 @@ public class HotelReservationTest {
 		HotelFuncs hotels=new HotelFuncs();
 		hotels.addHotel("Lakewood",110,90,3);
 		hotels.addHotel("Bridgewood",150,50,4);
-		hotels.addHotel("Rridgewood",200,150,5);
+		hotels.addHotel("Ridgewood",200,150,5);
 		try {
 			LocalDate startDate=LocalDate.of(2020, 9, 11);
 			LocalDate endDate=LocalDate.of(2020, 9, 12);
@@ -93,6 +93,27 @@ public class HotelReservationTest {
 		}
 		boolean result=hotelRatingCheck1 && hotelRatingCheck2;
 		assertTrue(result);
+	}
+	
+	@Test
+	public void addedHotelCheckCheapestBestRated_ReturnTrue() {
+		HotelFuncs hotels=new HotelFuncs();
+		hotels.addHotel("Lakewood",110,90,3);
+		hotels.addHotel("Bridgewood",150,50,4);
+		hotels.addHotel("Ridgewood",200,150,5);
+		try {
+			LocalDate startDate=LocalDate.of(2020, 9, 11);
+			LocalDate endDate=LocalDate.of(2020, 9, 12);
+			int cheapestHotelCost=hotels.computeCost(hotels.getHotelList().get(1),startDate, endDate);
+			boolean result=false;
+			boolean cond=  hotels.getHotelList().get(1).getHotelName().equalsIgnoreCase("Bridgewood") 
+					       && cheapestHotelCost==200 && hotels.getHotelList().get(1).getRating()==4;
+					if(cond)
+						result=true;
+			assertTrue(result);
+		}catch(DateTimeException e) {
+			System.out.println("Invalid date format");
+		}
 	}
 	
 }
