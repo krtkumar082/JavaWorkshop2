@@ -10,8 +10,8 @@ import java.util.List;
 
 public class HotelFuncs {
 	public static List<Hotel> hotelList=new ArrayList<>();
-	public void addHotel(String hotelName,int rateOfHotelRegularCust,int rateOfHotelRegularCustWeekNday) {
-		Hotel hotel=new Hotel(hotelName,rateOfHotelRegularCust,rateOfHotelRegularCustWeekNday);
+	public void addHotel(String hotelName,int rateOfHotelRegularCust,int rateOfHotelRegularCustWeekNday,int rating) {
+		Hotel hotel=new Hotel(hotelName,rateOfHotelRegularCust,rateOfHotelRegularCustWeekNday,rating);
 		hotelList.add(hotel);
 	}
 	 

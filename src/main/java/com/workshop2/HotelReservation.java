@@ -38,7 +38,9 @@ public class HotelReservation {
 			 		int rateWeekDay=sc.nextInt();
 			 		System.out.println("enter the rate of the hotel for regular customer for weekend days");
 			 		int rateWeekNday=sc.nextInt();
-			 		f1.addHotel(name,rateWeekDay,rateWeekNday);
+			 		System.out.println("Enter the hotel rating");
+			 		int rating=sc.nextInt();
+			 		f1.addHotel(name,rateWeekDay,rateWeekNday,rating);
 			 		System.out.println("want to add more hotel Y/N");
 					 char ch=sc.next().charAt(0);
 					 if(ch=='Y')
