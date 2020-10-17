@@ -45,6 +45,25 @@ public class HotelFuncs {
 	
 }
     
+	public static int bestRatedHotel(LocalDate startDate,LocalDate endDate) throws DateTimeException{
+		int maxRating=0;
+		 for(int i=0;i<hotelList.size();i++){
+	    		   if(hotelList.get(i).getRating()>maxRating) {
+	    			  maxRating=hotelList.get(i).getRating();
+			       }   	 
+		}
+		 
+		 int bestRatedCost=0;
+		 for(int i=0;i<hotelList.size();i++){
+    		   if(hotelList.get(i).getRating()==maxRating) {
+    			   bestRatedCost=computeCost(hotelList.get(i),startDate,endDate);
+    			  System.out.println("The best rated Hotel is "+"'"+hotelList.get(i).getHotelName()
+        					+"'"+" with Rating: "+maxRating+" with Total Rates: "+bestRatedCost);
+    			  break;
+		       }
+    	 } 
+		return bestRatedCost; 
+	}
 	 
 	public static int computeCost(Hotel hotel, LocalDate startDate, LocalDate endDate) throws DateTimeException {
 		 int cost=0;

@@ -116,4 +116,23 @@ public class HotelReservationTest {
 		}
 	}
 	
+	@Test
+	public void addedHotelCheckBestRated_ReturnTrue() {
+		HotelFuncs hotels=new HotelFuncs();
+		hotels.addHotel("Lakewood",110,90,3);
+		hotels.addHotel("Bridgewood",150,50,4);
+		hotels.addHotel("Ridgewood",220,150,5);
+		try {
+			LocalDate startDate=LocalDate.of(2020, 9, 11);
+			LocalDate endDate=LocalDate.of(2020, 9, 12);
+			int bestRatedCost=hotels.bestRatedHotel(startDate, endDate);
+			boolean result=false;
+			if(bestRatedCost==370)
+				result=true;
+			assertTrue(result);
+		}catch(DateTimeException e) {
+			System.out.println("Invalid date format");
+		}
+	}
+	
 }

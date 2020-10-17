@@ -23,12 +23,26 @@ public class HotelReservation {
  		} 
 	}
 	
+	public static void bestRatedHotel() {
+		try {
+	 		System.out.println("enter the start date-(YYYY-MM-DD)");
+	 		LocalDate startDate=LocalDate.parse(sc.next());
+	 		System.out.println("enter the end date-(YYYY-MM-DD)");
+	 		LocalDate endDate=LocalDate.parse(sc.next());
+	 		int cost=f1.bestRatedHotel(startDate,endDate);
+ 		}catch(DateTimeException e) {
+ 			System.out.println("Invalid date format");
+ 		} 
+	}
+	
 	public static void main(String[] args) {
 	System.out.println(" Welcome to hotel management system");
 	
 	 int option=0;
 	 do{
-		 System.out.println("Enter the option to choose\n"+"1)add hotel\n"+"2) cheapest hotel\n"+"3)exit");
+		 System.out.println("Enter the option to choose\n"+"1)add hotel\n"+"2) cheapest hotel\n"
+	                        +"3) Best Rated Hotel\n"
+	                        +"4)exit");
 		 option=sc.nextInt();
 		 switch(option) {
 		 case 1:do {
@@ -52,8 +66,11 @@ public class HotelReservation {
 			 		
 		 case 2: cheapestHotelfunc();
 		         break;
+		         
+		 case 3: bestRatedHotel();
+                  break;        
 			 		
-	     case 3:System.out.println("exit");
+	     case 4:System.out.println("exit");
 	 			break;
 	 			
 	 }	 
