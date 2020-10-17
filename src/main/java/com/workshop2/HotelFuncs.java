@@ -26,17 +26,27 @@ public class HotelFuncs {
 			if(compareCost<cheapestCost)
 				cheapestCost=compareCost;
 		}
-
+       int maxRating=0;
        for(int i=0;i<hotelList.size();i++){
-    	 if(computeCost(hotelList.get(i),startDate,endDate)==cheapestCost)
-		      System.out.println("The cheapest Hotel is "+"'"+hotelList.get(i).getHotelName()
-		                            +"'"+" with Total Rates: "+cheapestCost);
+       	 if(computeCost(hotelList.get(i),startDate,endDate)==cheapestCost) {
+    		   if(hotelList.get(i).getRating()>maxRating) {
+    			  maxRating=hotelList.get(i).getRating();
+		       }
+    	 }
 	}
-       return cheapestCost;
        
+       for(int i=0;i<hotelList.size();i++){
+      		   if(hotelList.get(i).getRating()==maxRating) {
+      			 System.out.println("The cheapest Hotel is "+"'"+hotelList.get(i).getHotelName()
+      					+"'"+" with Rating: "+maxRating+" with Total Rates: "+cheapestCost);
+  		       }
+      	 }
+        return cheapestCost;
+	
 }
-
-	private static int computeCost(Hotel hotel, LocalDate startDate, LocalDate endDate) throws DateTimeException {
+    
+	 
+	public static int computeCost(Hotel hotel, LocalDate startDate, LocalDate endDate) throws DateTimeException {
 		 int cost=0;
 		 endDate=endDate.plusDays(1);
 		 while(startDate.compareTo(endDate)!=0) {
