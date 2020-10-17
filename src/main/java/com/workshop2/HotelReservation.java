@@ -49,12 +49,17 @@ public class HotelReservation {
 			 		System.out.println("enter hotel name");
 			 		String name=sc.next();
 			 		System.out.println("enter the rate of the hotel for regular customer for week days");
-			 		int rateWeekDay=sc.nextInt();
+			 		int rateWeekDayRegCust=sc.nextInt();
 			 		System.out.println("enter the rate of the hotel for regular customer for weekend days");
-			 		int rateWeekNday=sc.nextInt();
+			 		int rateWeekNdayRegCust=sc.nextInt();
+			 		System.out.println("enter the rate of the hotel for reward customer for week days");
+			 		int rateWeekDayRewdCust=sc.nextInt();
+			 		System.out.println("enter the rate of the hotel for reward customer for weekend days");
+			 		int rateWeekNdayRewdCust=sc.nextInt();
 			 		System.out.println("Enter the hotel rating");
 			 		int rating=sc.nextInt();
-			 		f1.addHotel(name,rateWeekDay,rateWeekNday,rating);
+			 		f1.addHotel(name,rateWeekDayRegCust,rateWeekNdayRegCust
+			 				    ,rateWeekDayRewdCust,rateWeekNdayRewdCust,rating);
 			 		System.out.println("want to add more hotel Y/N");
 					 char ch=sc.next().charAt(0);
 					 if(ch=='Y')
