@@ -46,5 +46,24 @@ public class HotelReservationTest {
 		assertFalse(hotelInList);
 	}
 	
+	@Test
+	public void addedHotelCheckCheapest_ReturnTrue() {
+		HotelFuncs hotels=new HotelFuncs();
+		hotels.addHotel("Lakewood",110,90);
+		hotels.addHotel("Bridgewood",150,50);
+		hotels.addHotel("Rridgewood",200,150);
+		try {
+			LocalDate startDate=LocalDate.of(2020, 9, 11);
+			LocalDate endDate=LocalDate.of(2020, 9, 12);
+			int cheapestHotelCost=hotels.getCheapestHotel(startDate, endDate);
+			boolean result=false;
+			if(cheapestHotelCost==200)
+				result=true;
+			assertTrue(result);
+		}catch(DateTimeException e) {
+			System.out.println("Invalid date format");
+		}
+	}
+	
 	
 }
