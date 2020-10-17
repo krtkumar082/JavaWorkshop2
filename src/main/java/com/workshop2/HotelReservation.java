@@ -11,7 +11,17 @@ public class HotelReservation {
 	static Scanner sc=new Scanner(System.in);
 	
 	
-	
+	public static void cheapestHotelfunc() {
+		try {
+	 		System.out.println("enter the start date-(YYYY-MM-DD)");
+	 		LocalDate startDate=LocalDate.parse(sc.next());
+	 		System.out.println("enter the end date-(YYYY-MM-DD)");
+	 		LocalDate endDate=LocalDate.parse(sc.next());
+	 		int cost=f1.getCheapestHotel(startDate,endDate);
+ 		}catch(DateTimeException e) {
+ 			System.out.println("Invalid date format");
+ 		} 
+	}
 	
 	public static void main(String[] args) {
 	System.out.println(" Welcome to hotel management system");
@@ -28,7 +38,7 @@ public class HotelReservation {
 			 		int rateWeekDay=sc.nextInt();
 			 		System.out.println("enter the rate of the hotel for regular customer for weekend days");
 			 		int rateWeekNday=sc.nextInt();
-			 		f1.addHotel(name,rateWeekDay,rateWeekDay);
+			 		f1.addHotel(name,rateWeekDay,rateWeekNday);
 			 		System.out.println("want to add more hotel Y/N");
 					 char ch=sc.next().charAt(0);
 					 if(ch=='Y')
@@ -37,6 +47,10 @@ public class HotelReservation {
 						 break;
 		         }while(true);
 			 		break;
+			 		
+		 case 2: cheapestHotelfunc();
+		         break;
+			 		
 	     case 3:System.out.println("exit");
 	 			break;
 	 			
