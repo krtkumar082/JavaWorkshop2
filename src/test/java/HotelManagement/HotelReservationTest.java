@@ -3,6 +3,8 @@ package HotelManagement;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.time.DateTimeException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,4 +41,25 @@ public class HotelReservationTest {
 		}
 		assertFalse(hotelInList);
 	}
+	
+	@Test
+	public void addedHotelCheckCheapest_ReturnTrue() {
+		
+		HotelFuncs hotels=new HotelFuncs();
+		hotels.addHotel("Lakewood",110);
+		hotels.addHotel("Bridgewood",150);
+		hotels.addHotel("Rridgewood",200);
+		try {
+			LocalDate startDate=LocalDate.of(2020,9,10);
+			LocalDate endDate=LocalDate.of(2020,9,11);
+			Hotel cheapest=hotels.cheapestHotel(startDate,endDate);
+			boolean result=false;
+			if(cheapest.getHotelName().equalsIgnoreCase("lakewood"))
+				result=true;
+			assertTrue(result);
+		}catch(DateTimeException e) {
+			System.out.println("Invalid Date format");
+		}
+	}
+	
 }
