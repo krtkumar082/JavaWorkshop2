@@ -7,8 +7,8 @@ import java.util.List;
 
 public class HotelFuncs {
 	public static List<Hotel> hotelList=new ArrayList<>();
-	public void addHotel(String hotelName,int rateOfHotelRegularCust) {
-		Hotel hotel=new Hotel(hotelName,rateOfHotelRegularCust);
+	public void addHotel(String hotelName,int rateOfHotelRegularCust,int rateOfHotelRegularCustWeekNday) {
+		Hotel hotel=new Hotel(hotelName,rateOfHotelRegularCust,rateOfHotelRegularCustWeekNday);
 		hotelList.add(hotel);
 	}
 	 
@@ -16,14 +16,5 @@ public class HotelFuncs {
 		return hotelList;
 	}
 	
-	public Hotel cheapestHotel(LocalDate startDate,LocalDate endDate) {
-		Period period = Period.between(startDate, endDate);
-		int days=period.getDays();
-		Hotel cheapest=hotelList.get(0);
-		for(int i=1;i<hotelList.size();i++) {
-			if(hotelList.get(i).getRateRegCust()<cheapest.getRateRegCust())
-				cheapest=hotelList.get(i);
-		}
-		return cheapest;
-	}
+	
 }
