@@ -83,7 +83,7 @@ public class HotelReservation {
 			 		String name=sc.next();
 			 		boolean isValid=valid.validate(name);
 			 		while(!isValid) {
-			 			System.out.println("Enter Hotel Name again in proper valid format");
+			 			System.out.println("Enter Hotel Name again in proper valid format(First letter should be capital with min 3 characters)");
 			 			name=sc.next();
 			 			isValid=valid.validate(name);
 			 		}

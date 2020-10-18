@@ -34,8 +34,8 @@ public class HotelFuncs {
                 .get(); 
        
 		System.out.println("The Cheapest Best Rated Hotel is "+"'"+cheapestBestRatedHotel.getHotelName()
-					+"'"+"For "+custType+" With Rating: "+cheapestBestRatedHotel.getRating()+
-					" With Total Rates: "+computeCost(cheapestBestRatedHotel,startDate,endDate,custType));
+					+"'"+"For "+custType+" Customers  Rating: "+cheapestBestRatedHotel.getRating()+
+					"  Total Rates: "+computeCost(cheapestBestRatedHotel,startDate,endDate,custType));
         return computeCost(cheapestBestRatedHotel,startDate,endDate,custType);
 	
 }
@@ -46,8 +46,8 @@ public class HotelFuncs {
                 .get();
 		 
 		System.out.println("The Best Rated Hotel is "+"'"+BestRatedHotel.getHotelName()
-		+"'"+"For "+custType+" With Rating: "+BestRatedHotel.getRating()+
-		" With Total Rates: "+computeCost(BestRatedHotel,startDate,endDate,custType));
+		+"'"+"For "+custType+" Customers  Rating: "+BestRatedHotel.getRating()+
+		"  Total Rates: "+computeCost(BestRatedHotel,startDate,endDate,custType));
 		return computeCost(BestRatedHotel,startDate,endDate,custType); 
 	}
 	 
