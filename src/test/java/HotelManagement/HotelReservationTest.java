@@ -55,7 +55,7 @@ public class HotelReservationTest {
 		try {
 			LocalDate startDate=LocalDate.of(2020, 9, 11);
 			LocalDate endDate=LocalDate.of(2020, 9, 12);
-			int cheapestHotelCost=hotels.getCheapestHotel(startDate, endDate);
+			int cheapestHotelCost=hotels.getCheapestHotel(startDate, endDate,"Regular");
 			boolean result=false;
 			if(cheapestHotelCost==200)
 				result=true;
@@ -104,7 +104,7 @@ public class HotelReservationTest {
 		try {
 			LocalDate startDate=LocalDate.of(2020, 9, 11);
 			LocalDate endDate=LocalDate.of(2020, 9, 12);
-			int cheapestHotelCost=hotels.computeCost(hotels.getHotelList().get(1),startDate, endDate);
+			int cheapestHotelCost=hotels.computeCost(hotels.getHotelList().get(1),startDate, endDate,"Regular");
 			boolean result=false;
 			boolean cond=  hotels.getHotelList().get(1).getHotelName().equalsIgnoreCase("Bridgewood") 
 					       && cheapestHotelCost==200 && hotels.getHotelList().get(1).getRating()==4;
@@ -125,7 +125,7 @@ public class HotelReservationTest {
 		try {
 			LocalDate startDate=LocalDate.of(2020, 9, 11);
 			LocalDate endDate=LocalDate.of(2020, 9, 12);
-			int bestRatedCost=hotels.bestRatedHotel(startDate, endDate);
+			int bestRatedCost=hotels.bestRatedHotel(startDate, endDate,"Regular");
 			boolean result=false;
 			if(bestRatedCost==370)
 				result=true;
@@ -149,6 +149,27 @@ public class HotelReservationTest {
 			}
 		}
 		assertTrue(hotelInList);
+	}
+	
+	@Test
+	public void addedHotelCheckCheapestBestRatedForRewardCustomers_ReturnTrue() {
+		HotelFuncs hotels=new HotelFuncs();
+		hotels.addHotel("Lakewood",110,90,80,80,3);
+		hotels.addHotel("Bridgewood",150,50,110,50,4);
+		hotels.addHotel("Ridgewood",220,150,100,40,5);
+		try {
+			LocalDate startDate=LocalDate.of(2020, 9, 11);
+			LocalDate endDate=LocalDate.of(2020, 9, 12);
+			int cheapestHotelCost=hotels.getCheapestHotel(startDate, endDate,"Reward");
+			boolean result=false;
+			boolean cond=  hotels.getHotelList().get(2).getHotelName().equalsIgnoreCase("Ridgewood") 
+					       && cheapestHotelCost==140 && hotels.getHotelList().get(2).getRating()==5;
+					if(cond)
+						result=true;
+			assertTrue(result);
+		}catch(DateTimeException e) {
+			System.out.println("Invalid date format");
+		}
 	}
 	
 }
