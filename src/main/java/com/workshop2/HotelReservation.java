@@ -11,31 +11,63 @@ public class HotelReservation {
 	static Scanner sc=new Scanner(System.in);
 	
 	
-	public static void cheapestHotelfunc() {
+	public static void cheapestHotelfunc() throws InvalidCustomerException {
 		try {
 	 		System.out.println("enter the start date-(YYYY-MM-DD)");
 	 		LocalDate startDate=LocalDate.parse(sc.next());
 	 		System.out.println("enter the end date-(YYYY-MM-DD)");
 	 		LocalDate endDate=LocalDate.parse(sc.next());
-	 		int cost=f1.getCheapestHotel(startDate,endDate);
+	 		String custType=null;
+	 	      
+	 		do {
+	 			try {
+	 	    	  System.out.println("enter the customer type - Reward/Regular");
+	 	    	  custType=sc.next();
+	 	    	  if(custType.equalsIgnoreCase("Reward") || custType.equalsIgnoreCase("Regular"))
+	 	    		  break;
+	 	    	  else {
+	 	    		  throw new InvalidCustomerException();
+	 	    	  }
+	 	      }catch(InvalidCustomerException e) {
+	 	    	 System.out.println(e.getMessage()); 
+	 	      }
+	 		}while(true);
+	 	int cost=0;	
+	 	cost=f1.getCheapestHotel(startDate,endDate,custType);
  		}catch(DateTimeException e) {
  			System.out.println("Invalid date format");
  		} 
 	}
 	
-	public static void bestRatedHotel() {
+	public static void bestRatedHotel() throws InvalidCustomerException{
 		try {
 	 		System.out.println("enter the start date-(YYYY-MM-DD)");
 	 		LocalDate startDate=LocalDate.parse(sc.next());
 	 		System.out.println("enter the end date-(YYYY-MM-DD)");
 	 		LocalDate endDate=LocalDate.parse(sc.next());
-	 		int cost=f1.bestRatedHotel(startDate,endDate);
+	 		String custType=null;
+	 		
+	 		do {
+	 			try {
+	 	    	  System.out.println("enter the customer type - Reward/Regular");
+	 	    	  custType=sc.next();
+	 	    	  if(custType.equalsIgnoreCase("Reward") || custType.equalsIgnoreCase("Regular"))
+	 	    		  break;
+	 	    	  else {
+	 	    		  throw new InvalidCustomerException();
+	 	    	  }
+	 	      }catch(InvalidCustomerException e) {
+	 	    	 System.out.println(e.getMessage());
+	 	      }
+	 		}while(true);
+	 	int cost=0;	
+	 	cost=f1.getCheapestHotel(startDate,endDate,custType);
  		}catch(DateTimeException e) {
  			System.out.println("Invalid date format");
  		} 
 	}
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InvalidCustomerException {
 	System.out.println(" Welcome to hotel management system");
 	
 	 int option=0;
