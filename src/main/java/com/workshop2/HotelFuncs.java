@@ -23,49 +23,32 @@ public class HotelFuncs {
 	}
 	
 	public static int getCheapestHotel(LocalDate startDate,LocalDate endDate,String custType) throws DateTimeException {
-		int cheapestCost=computeCost(hotelList.get(0),startDate,endDate,custType);
-		for(int i=1;i<hotelList.size();i++) {
-			    int compareCost=computeCost(hotelList.get(i),startDate,endDate,custType);
-			if(compareCost<cheapestCost)
-				cheapestCost=compareCost;
-		}
-       int maxRating=0;
-       for(int i=0;i<hotelList.size();i++){
-       	 if(computeCost(hotelList.get(i),startDate,endDate,custType)==cheapestCost) {
-    		   if(hotelList.get(i).getRating()>maxRating) {
-    			  maxRating=hotelList.get(i).getRating();
-		       }
-    	 }
-	}
+		Hotel cheapestHotel = hotelList.stream()  
+                .min((hotel1, hotel2)->   
+                computeCost(hotel1,startDate,endDate,custType) > computeCost(hotel2,startDate,endDate,custType) ? 1: -1).get();
        
-       for(int i=0;i<hotelList.size();i++){
-      		   if(hotelList.get(i).getRating()==maxRating) {
-      			 System.out.println("The cheapest Hotel is "+"'"+hotelList.get(i).getHotelName()
-      					+"'"+"for "+custType+" with Rating: "+maxRating+" with Total Rates: "+cheapestCost);
-  		       }
-      	 }
-        return cheapestCost;
+		Hotel cheapestBestRatedHotel =hotelList.stream()  
+                .filter(hotel -> 
+                 computeCost(hotel,startDate,endDate,custType)==computeCost(cheapestHotel,startDate,endDate,custType))
+                .max((hotel1,hotel2)->hotel1.getRating()>hotel2.getRating()?1:-1)        
+                .get(); 
+       
+		System.out.println("The cheapest best rated Hotel is "+"'"+cheapestBestRatedHotel.getHotelName()
+					+"'"+"for "+custType+" with Rating: "+cheapestBestRatedHotel.getRating()+
+					" with Total Rates: "+computeCost(cheapestBestRatedHotel,startDate,endDate,custType));
+        return computeCost(cheapestBestRatedHotel,startDate,endDate,custType);
 	
 }
     
 	public static int bestRatedHotel(LocalDate startDate,LocalDate endDate,String custType) throws DateTimeException{
-		int maxRating=0;
-		 for(int i=0;i<hotelList.size();i++){
-	    		   if(hotelList.get(i).getRating()>maxRating) {
-	    			  maxRating=hotelList.get(i).getRating();
-			       }   	 
-		}
+		Hotel BestRatedHotel =hotelList.stream()  
+                .max((hotel1,hotel2)->hotel1.getRating()>hotel2.getRating()?1:-1)        
+                .get();
 		 
-		 int bestRatedCost=0;
-		 for(int i=0;i<hotelList.size();i++){
-    		   if(hotelList.get(i).getRating()==maxRating) {
-    			   bestRatedCost=computeCost(hotelList.get(i),startDate,endDate,custType);
-    			  System.out.println("The best rated Hotel is "+"'"+hotelList.get(i).getHotelName()
-        					+"'"+"for "+custType+" with Rating: "+maxRating+" with Total Rates: "+bestRatedCost);
-    			  break;
-		       }
-    	 } 
-		return bestRatedCost; 
+		System.out.println("The best rated Hotel is "+"'"+BestRatedHotel.getHotelName()
+		+"'"+"for "+custType+" with Rating: "+BestRatedHotel.getRating()+
+		" with Total Rates: "+computeCost(BestRatedHotel,startDate,endDate,custType));
+		return computeCost(BestRatedHotel,startDate,endDate,custType); 
 	}
 	 
 	public static int computeCost(Hotel hotel, LocalDate startDate, LocalDate endDate, String custType ) throws DateTimeException {

@@ -9,6 +9,7 @@ public class HotelReservation {
 	
 	static HotelFuncs f1=new HotelFuncs();
 	static Scanner sc=new Scanner(System.in);
+	static HotelValidation valid=new HotelValidation();
 	
 	
 	public static void cheapestHotelfunc() throws InvalidCustomerException {
@@ -61,7 +62,7 @@ public class HotelReservation {
 	 	      }
 	 		}while(true);
 	 	int cost=0;	
-	 	cost=f1.getCheapestHotel(startDate,endDate,custType);
+	 	cost=f1.bestRatedHotel(startDate,endDate,custType);
  		}catch(DateTimeException e) {
  			System.out.println("Invalid date format");
  		} 
@@ -80,6 +81,12 @@ public class HotelReservation {
 		 case 1:do {
 			 		System.out.println("enter hotel name");
 			 		String name=sc.next();
+			 		boolean isValid=valid.validate(name);
+			 		while(!isValid) {
+			 			System.out.println("enter hotel name again in proper valid format");
+			 			name=sc.next();
+			 			isValid=valid.validate(name);
+			 		}
 			 		System.out.println("enter the rate of the hotel for regular customer for week days");
 			 		int rateWeekDayRegCust=sc.nextInt();
 			 		System.out.println("enter the rate of the hotel for regular customer for weekend days");
