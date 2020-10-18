@@ -33,9 +33,9 @@ public class HotelFuncs {
                 .max((hotel1,hotel2)->hotel1.getRating()>hotel2.getRating()?1:-1)        
                 .get(); 
        
-		System.out.println("The cheapest best rated Hotel is "+"'"+cheapestBestRatedHotel.getHotelName()
-					+"'"+"for "+custType+" with Rating: "+cheapestBestRatedHotel.getRating()+
-					" with Total Rates: "+computeCost(cheapestBestRatedHotel,startDate,endDate,custType));
+		System.out.println("The Cheapest Best Rated Hotel is "+"'"+cheapestBestRatedHotel.getHotelName()
+					+"'"+"For "+custType+" With Rating: "+cheapestBestRatedHotel.getRating()+
+					" With Total Rates: "+computeCost(cheapestBestRatedHotel,startDate,endDate,custType));
         return computeCost(cheapestBestRatedHotel,startDate,endDate,custType);
 	
 }
@@ -45,9 +45,9 @@ public class HotelFuncs {
                 .max((hotel1,hotel2)->hotel1.getRating()>hotel2.getRating()?1:-1)        
                 .get();
 		 
-		System.out.println("The best rated Hotel is "+"'"+BestRatedHotel.getHotelName()
-		+"'"+"for "+custType+" with Rating: "+BestRatedHotel.getRating()+
-		" with Total Rates: "+computeCost(BestRatedHotel,startDate,endDate,custType));
+		System.out.println("The Best Rated Hotel is "+"'"+BestRatedHotel.getHotelName()
+		+"'"+"For "+custType+" With Rating: "+BestRatedHotel.getRating()+
+		" With Total Rates: "+computeCost(BestRatedHotel,startDate,endDate,custType));
 		return computeCost(BestRatedHotel,startDate,endDate,custType); 
 	}
 	 
